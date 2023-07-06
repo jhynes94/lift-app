@@ -1,5 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import benchPress from '../assets/BenchPressDude.gif'
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
@@ -17,26 +19,23 @@ function ProgramList() {
     });
   }, []);
 
-  // programs.map((anObjectMapped, index) => {
-  //   return (
-  //     <p key={`${anObjectMapped.name}_{anObjectMapped.email}`}>
-  //       {anObjectMapped.name} - {anObjectMapped.email}
-  //     </p>
-  //   );
-  // })
-
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={benchPress} />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
+    <Row xs={1} md={3} className="g-4">
+      {programs.map((program, index) => {
+        return (
+          <Col className="d-flex justify-content-center" key={program.id} >
+            <Card style={{ width: '18rem' }}>
+              <Card.Img variant="top" src={benchPress} />
+              <Card.Body>
+                <Card.Title>{program.name}</Card.Title>
+                <Card.Text>{program.description}</Card.Text>
+                <Button href="programs/3" variant="primary">Go somewhere</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        )
+      })}
+    </Row>
   );
 }
 
