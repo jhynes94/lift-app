@@ -15,6 +15,18 @@ programs = Program.create([
   {
     name: "MAPS Performance",
     description: "Perfect for beginners"
+  },
+  {
+    name: "MAPS Powerlift",
+    description: "Perfect for beginners"
+  },
+  {
+    name: "MAPS Prime",
+    description: "Description for Maps Prime"
+  },
+  {
+    name: "MAPS Anabolic",
+    description: "The goal here is to put on muscle and mass. Plain and simple."
   }
 ])
 

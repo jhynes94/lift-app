@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :exercises, only: [:index, :create, :update, :destroy]
+  resources :programs, only: [:index, :create, :update, :destroy] do
+    resources :phases, only: [:index, :create, :update, :destroy]do
+      resources :workouts, only: [:index, :create, :update, :destroy] do
+        resources :exercises, only: [:index, :create, :update, :destroy]
+      end
+    end
+  end
 
   # get '/Exercises', to: 'exercises#index'
   # post '/Exercise', to: 'exercises#create'
