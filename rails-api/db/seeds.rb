@@ -22,7 +22,7 @@ programs = Program.create([
   },
   {
     name: "MAPS Prime",
-    description: "Description for Maps Prime"
+    description: "Maps prime is designed to provide supurior muscle recutment pattern, proper join mobility, prime the cental nevous system to maximize any muscle building signals"
   },
   {
     name: "MAPS Anabolic",

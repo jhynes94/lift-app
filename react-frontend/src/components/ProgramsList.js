@@ -29,7 +29,7 @@ function ProgramList() {
               <Card.Body>
                 <Card.Title>{program.name}</Card.Title>
                 <Card.Text>{program.description}</Card.Text>
-                <Button href="programs/3" variant="primary">Go somewhere</Button>
+                <Button href={"programs/" + program.id} variant="primary">Go somewhere</Button>
               </Card.Body>
             </Card>
           </Col>

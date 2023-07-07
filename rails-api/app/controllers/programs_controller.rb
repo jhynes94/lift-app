@@ -7,6 +7,15 @@ class ProgramsController < ApplicationController
     render(json: @programs)
   end
 
+  def show
+    @program = Program.find(params[:id])
+    if @program
+      render(json: @program)
+    else
+      render(json: @program.errors.details, status: :bad_request)
+    end
+  end
+
   def create
     @program = Program.new(program_params)
     #authorize(@program)
