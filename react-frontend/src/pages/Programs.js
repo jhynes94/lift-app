@@ -1,18 +1,32 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
-
-const [programs, setPrograms] = useState([]);
-
-useEffect(() => {
-	axios.get("http://localhost:3000/programs/3").then((data) => {
-		console.log(data);
-		setPrograms(data?.data);
-	});
-}, []);
+import { useParams } from 'react-router-dom';
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
 
 function Programs() {
-	return <h1>Hello Program! Check the console</h1>
+
+	const { programId } = useParams();
+
+
+	const [program, setProgram] = useState([]);
+
+	useEffect(() => {
+		axios.get(`${API_ENDPOINT}/programs/${programId}`).then((data) => {
+			console.log(data);
+			setProgram(data?.data);
+		});
+	}, []);
+
+
+	return(
+
+		<div>
+			<p>{program.name}</p>
+		</div>
+
+
+	)
 
 }
 
