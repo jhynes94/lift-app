@@ -35,7 +35,12 @@ function Programs() {
 
 			{phases.map((phase, index) => {
 				return (
+					<div>
 					<p>{phase.name}</p>
+					<p>{phase.objective}</p>
+					<p>{phase.what_to_expect}</p>
+					<p>{phase.length} weeks.</p>
+					</div>
 				)})
 			}
 		</div>

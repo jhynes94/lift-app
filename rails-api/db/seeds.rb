@@ -9,52 +9,59 @@
 
 programs = Program.create([
   {
-    name: "Starting Strength",
-    description: "Getting it going!"
-  },
-  {
     name: "MAPS Performance",
-    description: "Perfect for beginners"
+    description: "Designed to improve athletic performance, functional mobility, and a cultivate a balanced looking body"
   },
   {
     name: "MAPS Powerlift",
-    description: "Perfect for beginners"
+    description: "Designed to maximize your lifts in the three lifts; The Squat, The Bench Press, and the Deadlift."
   },
   {
     name: "MAPS Prime",
-    description: "Maps prime is designed to provide supurior muscle recutment pattern, proper join mobility, prime the cental nevous system to maximize any muscle building signals"
+    description: "Designed to provide supurior muscle recutment pattern, proper join mobility, prime the cental nevous system to maximize any muscle building signals"
   },
   {
     name: "MAPS Anabolic",
-    description: "The goal here is to put on muscle and mass. Plain and simple."
+    description: "Designed to maximize muscle building and metabolism boosting potential."
+  },
+  {
+    name: "MAPS Asthetic",
+    description: "Designed to maximize muscle building and body sculpting potential"
   }
 ])
 
 
 phases = Phase.create([
   {
-    name: "Pump it up!",
+    name: "Phase 1",
     order: 0,
-    program: programs.first
+    objective: "To build maximal strength.",
+    what_to_expect: "Rapid strength gains. This Phase will make you feel strong.",
+    length: 3,
+    program: programs[0]
   },
   {
-    name: "Max Numbers",
-    order: 0,
-    program: programs.first
-  },
-  {
-    name: "Sustain",
-    order: 0,
-    program: programs.first
-  },
-  {
-    name: "Work Up",
-    order: 0,
-    program: programs.second
-  },
-  {
-    name: "Work Down",
+    name: "Phase 2",
     order: 1,
-    program: programs.second
+    objective: "To build multi-planar strength.",
+    what_to_expect: "Increase your proprioception strength. The ability to perform strongly in any direction when demanded.",
+    length: 3,
+    program: programs[0]
+  },
+  {
+    name: "Phase 3",
+    order: 2,
+    objective: "To build quick and powerful strength.",
+    what_to_expect: "Rapid increase in acceleration. This phase will make you feel fast and powerful.",
+    length: 3,
+    program: programs[0]
+  },
+  {
+    name: "Phase 4",
+    order: 3,
+    objective: "To give your strength a bigger gas tank.",
+    what_to_expect: "A dramatic increase in strength endurance and conditioning.",
+    length: 3,
+    program: programs[0]
   },
 ])
