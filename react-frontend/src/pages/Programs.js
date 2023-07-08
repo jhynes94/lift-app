@@ -10,6 +10,7 @@ function Programs() {
 
 
 	const [program, setProgram] = useState([]);
+	const [phases, setPhases] = useState([]);
 
 	useEffect(() => {
 		axios.get(`${API_ENDPOINT}/programs/${programId}`).then((data) => {
@@ -18,11 +19,25 @@ function Programs() {
 		});
 	}, []);
 
+	useEffect(() => {
+		axios.get(`${API_ENDPOINT}/programs/${programId}/phases`).then((data) => {
+			console.log(data);
+			setPhases(data?.data);
+		});
+	}, []);
 
-	return(
+
+	return (
 
 		<div>
-			<p>{program.name}</p>
+			<h1>{program.name}</h1>
+			<p>{program.description}</p>
+
+			{phases.map((phase, index) => {
+				return (
+					<p>{phase.name}</p>
+				)})
+			}
 		</div>
 
 
