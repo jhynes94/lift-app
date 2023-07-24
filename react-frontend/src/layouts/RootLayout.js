@@ -4,10 +4,12 @@ import { NavLink, Outlet } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
 export default function RootLayout() {
+
+	const signed_in = false
+
 	return (
 		<div className="root-layout">
 			<Navbar expand="lg" className="bg-body-tertiary">
@@ -16,13 +18,13 @@ export default function RootLayout() {
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="me-auto">
-							<NavLink href="/">Home</NavLink>
-							<NavLink href="/about">About</NavLink>
+							<Nav.Link href="/">Home</Nav.Link>
+							<Nav.Link href="/about">About</Nav.Link>
+							{ signed_in == false ? <Nav.Link href="/about">Sign In</Nav.Link> : ''}
 						</Nav>
 					</Navbar.Collapse>
 				</Container>
 			</Navbar>
-
 
 			<main>
 				<Outlet />

@@ -11,13 +11,8 @@ function Home() {
     <div className="Home">
 
       <Container>
-        <Row>
-          <Col><h1>Fitness programs:</h1></Col>
-          <Col><a href="#" className="btn btn-primary btn-lg active float-end" role="button" aria-pressed="true">Create a Program</a></Col>
-        </Row>
-      </Container>
-      <Container>
-        <ProgramList />
+        <h1>Homepage</h1>
+        <h2>Information about the value added of using this...</h2>
       </Container>
 
     </div>
