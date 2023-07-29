@@ -20,7 +20,7 @@ export default function RootLayout() {
 						<Nav className="me-auto">
 							<Nav.Link href="/">Home</Nav.Link>
 							<Nav.Link href="/about">About</Nav.Link>
-							{ signed_in == false ? <Nav.Link href="/about">Sign In</Nav.Link> : ''}
+							{ signed_in == false ? <Nav.Link href="/SignIn">Sign In</Nav.Link> : ''}
 						</Nav>
 					</Navbar.Collapse>
 				</Container>

@@ -67,4 +67,9 @@ phases = Phase.create([
 ])
 
 
-
+User = User.create([
+  {
+    email: "justin@lift.com",
+    encrypted_password: "cryptoPassHere"
+  }
+])

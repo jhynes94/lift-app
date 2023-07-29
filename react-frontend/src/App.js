@@ -4,8 +4,8 @@ import RootLayout from './layouts/RootLayout'
 // Pages
 import Home from './pages/Home'
 import Programs from './pages/Programs'
-
-
+import SignIn from './pages/SignIn';
+import About from './pages/About';
 
 import {
   createBrowserRouter,
@@ -23,6 +23,14 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
      },
+     {
+       path: "SignIn",
+       element: <SignIn />,
+     },
+     {
+       path: "About",
+       element: <About />,
+     }
     ],
   },
   {
