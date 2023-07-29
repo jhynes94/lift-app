@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :progressions, only: [:index]
+
   # get '/Exercises', to: 'exercises#index'
   # post '/Exercise', to: 'exercises#create'
   # patch '/Exercise/:id', to: 'exercises#update'
