@@ -7,7 +7,7 @@
 #  order       :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  workouts_id :integer
+#  workouts_id :integer          not null
 #
 # Indexes
 #

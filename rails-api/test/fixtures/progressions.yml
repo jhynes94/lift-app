@@ -1,0 +1,34 @@
+# == Schema Information
+#
+# Table name: progressions
+#
+#  id         :integer          not null, primary key
+#  exercise   :integer
+#  phase      :integer
+#  set        :integer
+#  workout    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  program_id :integer          not null
+#  user_id    :integer          not null
+#
+# Indexes
+#
+#  index_progressions_on_program_id  (program_id)
+#  index_progressions_on_user_id     (user_id)
+#
+# Foreign Keys
+#
+#  program_id  (program_id => programs.id)
+#  user_id     (user_id => users.id)
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value

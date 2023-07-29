@@ -10,25 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_13_035239) do
-  create_table "exercises", force: :cascade do |t|
-    t.string "name"
+ActiveRecord::Schema[7.0].define(version: 2023_07_27_020500) do
+  create_table "exercise_logs", force: :cascade do |t|
+    t.integer "reps"
+    t.integer "weight"
+    t.boolean "failure", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "workouts_id"
+    t.index ["user_id"], name: "index_exercise_logs_on_user_id"
+  end
+
+  create_table "exercises", force: :cascade do |t|
+    t.string "name"
     t.integer "order"
+    t.integer "workouts_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["workouts_id"], name: "index_exercises_on_workouts_id"
   end
 
   create_table "phases", force: :cascade do |t|
     t.string "name"
     t.integer "order"
-    t.integer "program_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "objective"
     t.string "what_to_expect"
     t.integer "length"
+    t.integer "program_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["program_id"], name: "index_phases_on_program_id"
   end
 
@@ -37,6 +47,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_035239) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "progressions", force: :cascade do |t|
+    t.integer "phase"
+    t.integer "workout"
+    t.integer "exercise"
+    t.integer "set"
+    t.integer "user_id", null: false
+    t.integer "program_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["program_id"], name: "index_progressions_on_program_id"
+    t.index ["user_id"], name: "index_progressions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -61,7 +84,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_035239) do
     t.index ["phase_id"], name: "index_workouts_on_phase_id"
   end
 
+  add_foreign_key "exercise_logs", "users"
   add_foreign_key "exercises", "workouts", column: "workouts_id"
   add_foreign_key "phases", "programs"
+  add_foreign_key "progressions", "programs"
+  add_foreign_key "progressions", "users"
   add_foreign_key "workouts", "phases"
 end
