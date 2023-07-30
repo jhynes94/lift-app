@@ -67,9 +67,7 @@ phases = Phase.create([
 ])
 
 
-User = User.create([
-  {
-    email: "justin@lift.com",
-    encrypted_password: "cryptoPassHere"
-  }
-])
+user = User.new
+user.email = 'justin@lift.com'
+user.encrypted_password = 'password'
+user.save!
