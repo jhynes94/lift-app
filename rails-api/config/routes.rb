@@ -6,13 +6,17 @@ Rails.application.routes.draw do
   devise_for :users, path: '', path_names: {
       sign_in: 'login',
       sign_out: 'logout',
-      registration: 'signup'
+      registration: 'signup',
     },
     controllers: {
       sessions: 'users/sessions',
       registrations: 'users/registrations'
     }
 
+  #devise_for :users
+  #scope '/user' do
+    resources :progressions, only: [:index, :show, :create, :update, :destroy]
+  #end
 
   resources :programs, only: [:index, :show, :create, :update, :destroy] do
     resources :phases, only: [:index, :show, :create, :update, :destroy]do
