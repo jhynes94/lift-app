@@ -1,6 +1,34 @@
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
+import axios from 'axios'
+import { useState } from 'react';
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
 export default function SignIn() {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+
+  function SignUpRequest() {
+    console.log('Sign Up Request ' + email + ' ' + password)
+    axios.post(`${API_ENDPOINT}/login`, {
+      user: {
+        email: email,
+        password: password
+      }
+    })
+      .then(response => {
+        // Save the token to local storage
+        localStorage.setItem('jwt', response.data.jwt)
+        // Set the user in the parent component
+        this.props.setUser(response.data.user)
+        // Redirect to the home page
+        this.props.history.push('/')
+      })
+      .catch(error => console.log('api errors:', error))
+  }
+
+
   return (
     <div>
       <Container>
@@ -18,7 +46,9 @@ export default function SignIn() {
                         <Form.Label className="text-center">
                           Email address
                         </Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Control type="email" placeholder="Enter email" onChange={(event) => {
+                          setEmail(event.target.value);
+                          }} value={email} />
                       </Form.Group>
 
                       <Form.Group
@@ -26,7 +56,9 @@ export default function SignIn() {
                         controlId="formBasicPassword"
                       >
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control type="password" placeholder="Password" onChange={(event) => {
+                          setPassword(event.target.value);
+                          }} value={password} />
                       </Form.Group>
                       <Form.Group
                         className="mb-3"
@@ -34,12 +66,12 @@ export default function SignIn() {
                       >
                         <p className="small">
                           <a className="text-primary" href="#!">
-                            Forgot password?
+                            Forgot password? <b>ADD MORE</b>
                           </a>
                         </p>
                       </Form.Group>
                       <div className="d-grid">
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary" type="submit" onClick={SignUpRequest}>
                           SignIn
                         </Button>
                       </div>
@@ -47,7 +79,7 @@ export default function SignIn() {
                     <div className="mt-3">
                       <p className="mb-0  text-center">
                         Don't have an account?{" "}
-                        <a href="{''}" className="text-primary fw-bold">
+                        <a href="/SignUp" className="text-primary fw-bold">
                           Sign Up
                         </a>
                       </p>

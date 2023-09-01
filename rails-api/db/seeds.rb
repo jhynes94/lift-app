@@ -66,8 +66,10 @@ phases = Phase.create([
   },
 ])
 
-
-user = User.new
-user.email = 'justin@lift.com'
-user.encrypted_password = 'password'
-user.save!
+User.first_or_create([
+  {
+    email: 'justin@lift.com',
+    password: 'password',
+    password_confirmation: 'password',
+  }
+])
