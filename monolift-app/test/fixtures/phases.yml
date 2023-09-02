@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: phases
+#
+#  id             :integer          not null, primary key
+#  name           :string
+#  order          :integer
+#  objective      :string
+#  what_to_expect :string
+#  duration_days  :integer
+#  program_id     :integer          not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
+one:
+  name: MyString
+  order: 1
+  objective: MyString
+  what_to_expect: MyString
+  duration_days: 1
+  program: one
+
+two:
+  name: MyString
+  order: 1
+  objective: MyString
+  what_to_expect: MyString
+  duration_days: 1
+  program: two

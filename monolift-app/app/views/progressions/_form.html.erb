@@ -1,0 +1,47 @@
+<%= form_with(model: progression) do |form| %>
+  <% if progression.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(progression.errors.count, "error") %> prohibited this progression from being saved:</h2>
+
+      <ul>
+        <% progression.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :phase, style: "display: block" %>
+    <%= form.number_field :phase %>
+  </div>
+
+  <div>
+    <%= form.label :workout, style: "display: block" %>
+    <%= form.number_field :workout %>
+  </div>
+
+  <div>
+    <%= form.label :exercise, style: "display: block" %>
+    <%= form.number_field :exercise %>
+  </div>
+
+  <div>
+    <%= form.label :set, style: "display: block" %>
+    <%= form.number_field :set %>
+  </div>
+
+  <div>
+    <%= form.label :program_id, style: "display: block" %>
+    <%= form.text_field :program_id %>
+  </div>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

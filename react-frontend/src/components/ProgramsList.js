@@ -13,7 +13,7 @@ function ProgramList() {
   const [programs, setPrograms] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/programs").then((data) => {
+    axios.get("http://localhost:3001/programs").then((data) => {
       console.log(data);
       setPrograms(data?.data);
     });

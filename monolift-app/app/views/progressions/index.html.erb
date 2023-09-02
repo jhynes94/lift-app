@@ -1,0 +1,25 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Progressions</h1>
+
+<% if @progressions.empty? %>
+  <p>We noticed you don't yet have a progression, let's select one!</p>
+  <%= link_to "New progression", new_progression_path %>
+
+<% else %>
+
+<div id="progressions">
+  <% @progressions.each do |progression| %>
+    <%= render progression %>
+    <p>Progression Id <%= progression.id %></p>
+    <p>
+      progression_workout
+      <%= link_to "Begin your next workout", progression_workout_path(id: progression.id), method: :get %>
+    </p>
+  <% end %>
+</div>
+
+<br/>
+<%= link_to "New progression", new_progression_path %>
+
+<% end %>

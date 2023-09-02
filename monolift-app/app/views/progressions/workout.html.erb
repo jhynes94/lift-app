@@ -1,0 +1,20 @@
+<p style="color: green"><%= notice %></p>
+
+<h2>Welcome to the workout!</h2>
+<p><%= @program.name%></p>
+<p><%= @phase.name%></p>
+<p><%= @workout.name%></p>
+<p>Exerceise: <%= @exercise.name%></p>
+<p>Sets <%= @exercise.sets%></p>
+<p>min Reps <%= @exercise.min_reps%></p>
+<p>max Reps <%= @exercise.max_reps%></p>
+
+
+<%# <%= button_to "Completed Set", params: {program_id: program.id, user_id: current_user.id}, action: "create", method: :post %>
+
+
+<h3>Future things, like target weight<h3>
+
+<div>
+  <%= link_to "Back to progressions", progressions_path %>
+</div>

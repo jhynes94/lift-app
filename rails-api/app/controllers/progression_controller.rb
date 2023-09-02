@@ -1,11 +1,19 @@
 class ProgressionController < ApplicationController
   protect_from_forgery with: :null_session
+
   before_action :authenticate_user!
 
   # List out all Sessions that specific user has signed up in (Also Completed Ones)
   def index
     if params[:user_id]
       @progressions = Progression.where(user_id: params[:user_id])
+
+      #If there are no progressions, log to the console "No Progressions Found"
+      if @progressions.empty?
+        puts "No Progressions Found"
+      end
+
+      #render out the progressions
       render(json: @progressions)
     else
       render(json: { error: 'No user_id provided.' }, status: :bad_request)

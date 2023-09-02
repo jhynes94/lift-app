@@ -10,13 +10,8 @@ export default function SignIn() {
 
 
   function SignUpRequest() {
-    console.log('Sign Up Request ' + email + ' ' + password)
-    axios.post(`${API_ENDPOINT}/login`, {
-      user: {
-        email: email,
-        password: password
-      }
-    })
+    console.log('Sign Up Request for ' + email + ' with ' + password + ' at ' + API_ENDPOINT)
+    axios.post(`${API_ENDPOINT}/login`, {user: {email: email, password: password} })
       .then(response => {
         // Save the token to local storage
         localStorage.setItem('jwt', response.data.jwt)
@@ -30,6 +25,9 @@ export default function SignIn() {
 
 
   return (
+
+
+
     <div>
       <Container>
         <Row className="vh-100 d-flex justify-content-center align-items-center">
@@ -71,7 +69,7 @@ export default function SignIn() {
                         </p>
                       </Form.Group>
                       <div className="d-grid">
-                        <Button variant="primary" type="submit" onClick={SignUpRequest}>
+                        <Button variant="primary" onClick={SignUpRequest}>
                           SignIn
                         </Button>
                       </div>
