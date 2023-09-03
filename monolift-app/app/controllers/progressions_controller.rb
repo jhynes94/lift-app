@@ -49,9 +49,28 @@ class ProgressionsController < ApplicationController
   # PATCH/PUT /progressions/1 or /progressions/1.json
   def update
     respond_to do |format|
+
+      @progression = Progression.find(params[:id])
+      @phase = Phase.where(program_id: @program.id, order: @progression.phase)
+      @workout = Workout.where(phase_id: @phase.id[0], order: @progression.workout).first
+      @exercise = Exercise.where(workout_id: @workout.id[0], order: @progression.exercise).first
+
+      #Increment the current Exercise, if it's the last one, increment the Workout, if it's the last one, increment the Phase
+      if @exercise[@progression.exercise+1] < @exercise.count
+        @progression.exercise = @progression.exercise + 1
+      end
+
+
+
+      progression_params
+
+
       if @progression.update(progression_params)
         format.html { redirect_to progression_url(@progression), notice: "Progression was successfully updated." }
         format.json { render :show, status: :ok, location: @progression }
+
+
+
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @progression.errors, status: :unprocessable_entity }
