@@ -47,33 +47,45 @@ class ProgressionsController < ApplicationController
   # PATCH/PUT /progressions/1 or /progressions/1.json
   def update
     respond_to do |format|
-
       @progression = Progression.find(params[:id])
       @program = @progression.program
       @phase = Phase.where(program_id: @program.id, order: @progression.phase)
-      @workout = Workout.where(phase_id: @phase[0].id, order: @progression.workout).first
-      @exercise = Exercise.where(workout_id: @workout[0], order: @progression.exercise).first
+      @workout = Workout.where(phase_id: @phase[0].id, order: @progression.workout)
+
+      # TODO Items
+      # * Iterate the Set number during the Workout
+      # * Iterate the Loop Back over the Phase the number of times required. Requies an update to the model to include
+      # * Add implementation to create a new workout log whenever this update method is called
 
       #Increment the current Exercise, if it's the last one, increment the Workout, if it's the last one, increment the Phase
-      if @exercise[@progression.exercise + 1] < @exercise.count
+      @exercises = Exercise.where(workout_id: @workout[0].id)
+      if @progression.exercise + 1 < @exercises.count
         @progression.exercise = @progression.exercise + 1
       else
         @progression.exercise = 0
-        if @workout[@progression.workout + 1] < @workout.count
+        @workouts = Workout.where(phase_id: @phase[0].id)
+        if @progression.workout + 1 < @workouts.count
           @progression.workout = @progression.workout + 1
         else
+          @phases = Phase.where(program_id: @program.id)
           @progression.workout = 0
-          if @phase[@progression.phase + 1] < @phase.count
+          if @progression.phase + 1 < @phases.count
             @progression.phase = @progression.phase + 1
           else
             #Progression is complete, Redirect back to index page and mark as complete
             puts "Progression is complete!"
+            binding.pry
+            format.html { redirect_to progressions_path(id: @progression.id), notice: "You completed your First Program! Congrats" }
           end
         end
       end
 
-      if @progression.update(@progression)
-        format.html { redirect_to progression_workout_path(id: @progression.id), notice: "Progression was successfully updated." }
+      if @progression.update(
+        :phase => @progression.phase,
+        :workout => @progression.workout,
+        :exercise => @progression.exercise,
+        :set => @progression.set)
+        format.html { redirect_to progression_workout_path(id: @progression.id), notice: "Nice job!" }
         format.json { render :show, status: :ok, location: @progression }
       else
         format.html { render :edit, status: :unprocessable_entity }

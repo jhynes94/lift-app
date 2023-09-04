@@ -78,3 +78,6 @@ gem "pry-rails", "~> 0.3.9"
 group :development do
   gem 'annotate'
 end
+
+# Teaches Pry about step, next, and continue to create a simple debugger.
+gem 'pry-nav', '~> 1.0'
