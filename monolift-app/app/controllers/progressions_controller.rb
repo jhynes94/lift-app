@@ -5,11 +5,8 @@ class ProgressionsController < ApplicationController
 
   # GET /progressions or /progressions.json
   def index
-    #@progressions = Progression.all
-
     # Show Progressions specific to the user
     @progressions = Progression.where(user_id: current_user.id)
-
   end
 
   # GET /progressions/1 or /progressions/1.json
@@ -24,6 +21,7 @@ class ProgressionsController < ApplicationController
 
   # GET /progressions/1/edit
   def edit
+    # Displays the form for updating. Not used for this
   end
 
   # POST /progressions or /progressions.json
@@ -51,26 +49,32 @@ class ProgressionsController < ApplicationController
     respond_to do |format|
 
       @progression = Progression.find(params[:id])
+      @program = @progression.program
       @phase = Phase.where(program_id: @program.id, order: @progression.phase)
-      @workout = Workout.where(phase_id: @phase.id[0], order: @progression.workout).first
-      @exercise = Exercise.where(workout_id: @workout.id[0], order: @progression.exercise).first
+      @workout = Workout.where(phase_id: @phase[0].id, order: @progression.workout).first
+      @exercise = Exercise.where(workout_id: @workout[0], order: @progression.exercise).first
 
       #Increment the current Exercise, if it's the last one, increment the Workout, if it's the last one, increment the Phase
-      if @exercise[@progression.exercise+1] < @exercise.count
+      if @exercise[@progression.exercise + 1] < @exercise.count
         @progression.exercise = @progression.exercise + 1
+      else
+        @progression.exercise = 0
+        if @workout[@progression.workout + 1] < @workout.count
+          @progression.workout = @progression.workout + 1
+        else
+          @progression.workout = 0
+          if @phase[@progression.phase + 1] < @phase.count
+            @progression.phase = @progression.phase + 1
+          else
+            #Progression is complete, Redirect back to index page and mark as complete
+            puts "Progression is complete!"
+          end
+        end
       end
 
-
-
-      progression_params
-
-
-      if @progression.update(progression_params)
-        format.html { redirect_to progression_url(@progression), notice: "Progression was successfully updated." }
+      if @progression.update(@progression)
+        format.html { redirect_to progression_workout_path(id: @progression.id), notice: "Progression was successfully updated." }
         format.json { render :show, status: :ok, location: @progression }
-
-
-
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @progression.errors, status: :unprocessable_entity }
