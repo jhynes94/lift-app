@@ -1,13 +1,13 @@
-<p style="color: green"><%= notice %></p>
 
-<h2>Welcome to the workout!</h2>
-<p><%= @program.name%></p>
+<h2>Your <%= @program.name%> workout!</h2>
 <p><%= @phase.name%></p>
 <p><%= @workout.name%></p>
 <p>Exerceise: <%= @exercise.name%></p>
 <p>Sets <%= @exercise.sets%></p>
 <p>min Reps <%= @exercise.min_reps%></p>
 <p>max Reps <%= @exercise.max_reps%></p>
+
+<p>Current Set: <%= @progression.set + 1 %></p>
 
 
 <%# <%= button_to "Completed Set", params: {program_id: program.id, user_id: current_user.id}, action: "create", method: :post %>
