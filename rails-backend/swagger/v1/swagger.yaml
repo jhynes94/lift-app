@@ -31,6 +31,98 @@ paths:
               - email
               - password
               - password_confirmation
+  "/users/sign_in":
+    post:
+      summary: Log in
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: user logged in
+        '401':
+          description: invalid credentials
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email
+              - password
+  "/users/sign_out":
+    delete:
+      summary: Log out
+      tags:
+      - Users
+      responses:
+        '204':
+          description: user logged out
+        '401':
+          description: user not logged in
+  "/users/{id}":
+    get:
+      summary: Get User Profile
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: user found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  email:
+                    type: string
+                required:
+                - id
+                - email
+        '404':
+          description: user not found
+    put:
+      summary: Update User Profile
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: user updated
+        '404':
+          description: user not found
+    delete:
+      summary: Delete User
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: user deleted
+        '404':
+          description: user not found
 servers:
 - url: https://{defaultHost}
   variables:
