@@ -4,6 +4,13 @@ A fitness app focused around lifting routines and growth
 ## Background
 This app was inspired by the MAPS workout routines as seen on the Mind Pump podcast. The goal being to add the ability to more easily see what routine you're on and to better track your growth.
 
+## API Documentation
+Rails is now using `rswag`. To update the documentation, add new specs in /spec/integration/*_spec.rb, then run:
+```
+rake rswag:specs:swaggerize
+```
+View the results at `http://localhost:3000/api-docs/`
+
 ## Goal(s)
 
 1. Learn Ruby on Rails and React for personal development purposes.
