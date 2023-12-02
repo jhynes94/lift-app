@@ -21,16 +21,21 @@ paths:
             schema:
               type: object
               properties:
-                email:
-                  type: string
-                password:
-                  type: string
-                password_confirmation:
-                  type: string
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+                  required:
+                  - email
+                  - password
+                  - password_confirmation
               required:
-              - email
-              - password
-              - password_confirmation
+              - user
   "/users/sign_in":
     post:
       summary: Log in
@@ -124,7 +129,7 @@ paths:
         '404':
           description: user not found
 servers:
-- url: https://{defaultHost}
+- url: http://{defaultHost}
   variables:
     defaultHost:
-      default: www.example.com
+      default: localhost:3000
