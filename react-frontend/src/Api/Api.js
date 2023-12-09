@@ -27,10 +27,11 @@ const API = {
   },
 
   signInUser: async (email, password) => {
-    const response = await fetch('http://localhost:3000/sessions', {
+    const response = await fetch('http://localhost:3000/users/sign_in', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
       body: JSON.stringify({
         user: {

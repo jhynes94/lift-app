@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import API from './Api/Api'; // Import the API object
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // Use useNavigate instead of useHistory
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     try {
-      const response = await API.signInUser(email, password); // Use the API object to sign in
-      console.log(response);
+      const data = await API.signInUser(email, password);
+      // Check if sign in was successful before redirecting
+      if (data.token) {
+        navigate('/welcome'); // Use navigate instead of history.push
+      } else {
+        // Handle sign in failure
+        console.log("response.error");
+      }
     } catch (error) {
       console.error(error);
     }
