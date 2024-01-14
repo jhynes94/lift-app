@@ -44,13 +44,19 @@ const API = {
 
     const data = await response.json();
 
+
+
     if (response.ok) {
-      console.log(data)
+      console.log("Sign in Successful")
       localStorage.setItem('token', data.token);
       localStorage.setItem('email', email);
+      return data;
     }
-
-    return data;
+    else {
+      console.log(response)
+      console.log(data)
+      return null
+    }
   },
 
   signOutUser: () => {

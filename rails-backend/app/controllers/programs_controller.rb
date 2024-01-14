@@ -1,6 +1,8 @@
 class ProgramsController < ApplicationController
   before_action :set_program, only: %i[ show update destroy ]
 
+  # TODO: Add a before action to authenticate for some of these?
+
   # GET /programs
   def index
     @programs = Program.all
