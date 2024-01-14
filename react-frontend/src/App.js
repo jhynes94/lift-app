@@ -1,10 +1,10 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
-import Welcome from './Welcome';
-import Home from './Home';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import Welcome from './pages/Welcome';
+import Home from './pages/Home';
 
 const App = () => (
   <Router>

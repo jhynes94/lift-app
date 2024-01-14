@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import API from './Api/Api'; // Import the API object
+import API from '../Api/Api'; // Import the API object
 import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {

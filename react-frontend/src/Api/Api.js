@@ -1,8 +1,9 @@
 // api.js
+const URL = "http://localhost:3005"
 
 const API = {
   createUser: async (email, password, passwordConfirmation) => {
-    const response = await fetch('http://localhost:3000/users', {
+    const response = await fetch(URL + '/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,7 +28,7 @@ const API = {
   },
 
   signInUser: async (email, password) => {
-    const response = await fetch('http://localhost:3000/users/sign_in', {
+    const response = await fetch(URL + '/users/sign_in', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,6 +45,7 @@ const API = {
     const data = await response.json();
 
     if (response.ok) {
+      console.log(data)
       localStorage.setItem('token', data.token);
       localStorage.setItem('email', email);
     }
@@ -54,6 +56,21 @@ const API = {
   signOutUser: () => {
     localStorage.removeItem('token');
     localStorage.removeItem('email');
+  },
+
+  getWelcomeDetails: async () => {
+    const response = await fetch(URL + '/programs', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      // body: JSON.stringify({
+      //   token: localStorage.getItem('token')
+      // }),
+    });
+
+    return await response.json();
   },
 };
 

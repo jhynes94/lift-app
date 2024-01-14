@@ -1,8 +1,8 @@
 class Program < ApplicationRecord
   has_one_attached :image
 
-  validates :name, :description, presence: true
-  validate :image_attached
+  # validates :name, :description, presence: true
+  # validate :image_attached
 
   private
 

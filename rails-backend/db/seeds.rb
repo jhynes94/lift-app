@@ -15,23 +15,25 @@ User.first_or_create([
   }
 ])
 
+
+
 Dir[File.join(Rails.root, 'db', 'seeds/*', '*.rb')].sort.each do |seed|
   load seed
 end
 
-programs = Program.create([
+Program.first_or_create([
   {
     name: "MAPS Performance",
     description: "Designed to improve athletic performance, functional mobility, and a cultivate a balanced looking body"
   },
-  # {
-  #   name: "MAPS Prime",
-  #   description: "Designed to provide supurior muscle recutment pattern, proper join mobility, prime the cental nevous system to maximize any muscle building signals"
-  # },
-  # {
-  #   name: "MAPS Anabolic",
-  #   description: "Designed to maximize muscle building and metabolism boosting potential."
-  # },
+  {
+    name: "MAPS Prime",
+    description: "Designed to provide supurior muscle recutment pattern, proper join mobility, prime the cental nevous system to maximize any muscle building signals"
+  },
+  {
+    name: "MAPS Anabolic",
+    description: "Designed to maximize muscle building and metabolism boosting potential."
+  },
   # {
   #   name: "MAPS Asthetic",
   #   description: "Designed to maximize muscle building and body sculpting potential"
