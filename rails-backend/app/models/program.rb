@@ -1,6 +1,7 @@
 class Program < ApplicationRecord
   has_one_attached :image
 
+  # TODO: Update these
   # validates :name, :description, presence: true
   # validate :image_attached
 
